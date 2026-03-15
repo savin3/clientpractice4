@@ -34,6 +34,14 @@ const routes = [
       return import('../components/Login.vue');
     },
     beforeEnter: ifNotAuthenticated,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: function () {
+      return import('../components/Register.vue');
+    },
+    beforeEnter: ifNotAuthenticated,
   }
 ]
 
