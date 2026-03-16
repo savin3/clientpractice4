@@ -8,6 +8,10 @@
     <hr />
     <button type="submit">Login</button>
   </form>
+
+  <p class="register-link">
+    Don't have an account? <router-link to="/register">Sign up</router-link>
+  </p>
 </template>
 
 <style scoped>
@@ -25,6 +29,10 @@ button {
 }
 hr {
   margin: 10px 0;
+}
+.register-link {
+  text-align: center;
+  margin-top: 15px;
 }
 </style>
 

@@ -104,13 +104,37 @@ export default {
 
         return isValid;
       },
-      register() {
-        if (this.validateForm()) {
-          console.log("Validation is successful, we are sending:");
-        }
+    register() {
+      if (this.validateForm()) {
+        const userData = {
+          fio: this.fio,
+          email: this.email,
+          password: this.password,
+        };
+
+        this.$store
+            .dispatch('REGISTER_REQUEST', userData)
+            .then(() => {
+              this.$router.push('/login');
+            })
+            .catch((error) => {
+              if (error && error.error && error.error.code === 422) {
+                const serverErrors = error.error.errors || {};
+
+                this.errors = {
+                  fio: serverErrors.fio ? serverErrors.fio[0] : "",
+                  email: serverErrors.email ? serverErrors.email[0] : "",
+                  password: serverErrors.password ? serverErrors.password[0] : "",
+                  confirmPassword: serverErrors.password ? "Check the password" : "",
+                };
+              } else {
+                alert('Registration error. Try again later.');
+              }
+            });
       }
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
