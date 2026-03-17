@@ -47,13 +47,17 @@ export default {
   methods: {
     login() {
       const userData = {
-        username: this.username,
+        email: this.username,
         password: this.password,
       };
 
       this.$store
-        .dispatch('AUTH_REQUEST', userData)
-        .then(() => this.$router.push("/"))
+          .dispatch('AUTH_REQUEST', userData)
+          .then(() => this.$router.push("/"))
+          .catch(error => {
+            console.log("Ошибка:", error);
+            alert('Неверный email или пароль');
+          });
     },
   },
 };

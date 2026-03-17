@@ -9,11 +9,15 @@ export const loginRequest = (user) => {
             },
             body: JSON.stringify(user),
         })
-            .then(response => response.json())
-            .then(result => resolve(result.data.user_token))
-            .catch((error) => {
-                reject(error);
-            });
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    reject(data);
+                    return;
+                }
+                resolve(data.data.user_token);
+            })
+            .catch((error) => reject(error));
     });
 };
 
@@ -25,6 +29,27 @@ export const registerRequest = (userData) => {
                 'Content-Type': 'application/json; charset=UTF-8',
             },
             body: JSON.stringify(userData),
+        })
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    reject(data);
+                    return;
+                }
+                resolve(data);
+            })
+            .catch((error) => reject(error));
+    });
+};
+
+export const logoutRequest = () => {
+    return new Promise((resolve, reject) => {
+        fetch(`${API}/logout`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${localStorage.getItem('myAppToken')}`
+            }
         })
             .then(async response => {
                 const data = await response.json();
