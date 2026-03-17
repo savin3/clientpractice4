@@ -134,7 +134,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -151,6 +151,10 @@ button {
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 10px;
+}
+.register label {
+  text-align: left;
+  margin-bottom: 5px;
 }
 hr {
   margin: 10px 0;

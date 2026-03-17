@@ -27,6 +27,11 @@ button {
   border: 1px solid black;
   border-radius: 5px;
 }
+.login label {
+  margin-top: 10px;
+  text-align: left;
+  margin-bottom: 5px;
+}
 hr {
   margin: 10px 0;
 }

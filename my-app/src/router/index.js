@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '../store'
-import HomeView from '../views/HomeView.vue'
 
 const ifNotAuthenticated = (to, from, next) => {
   if (!store.getters.isAuthenticated) {
@@ -23,9 +22,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: function () {
-      return import('../views/HomeView.vue');
+      return import('../components/Products.vue');
     },
-    beforeEnter: ifAuthenticated,
+    beforeEnter: (to, from, next) => {
+      next();
+    }
   },
   {
     path: '/login',
