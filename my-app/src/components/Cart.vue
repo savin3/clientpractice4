@@ -164,17 +164,17 @@ export default {
       const API = "http://lifestealer86.ru/api-shop";
       const token = localStorage.getItem("myAppToken");
 
-      const response = await fetch(`${API}/cart/${item.cart_item_id}`, {
-        method: "DELETE",
-        headers: { "Authorization": `Bearer ${token}` }
-      });
+      const itemsToRemove = this.cartItems.filter(i => i.product_id === item.product_id);
 
-      if (response.ok) {
-        await this.loadCart();
-        toast.success('Item removed from cart');
-      } else {
-        toast.error('Failed to decrease quantity');
+      for (let cartItem of itemsToRemove) {
+        await fetch(`${API}/cart/${cartItem.id}`, {
+          method: "DELETE",
+          headers: { "Authorization": `Bearer ${token}` }
+        });
       }
+
+      await this.loadCart();
+      toast.success('Item removed from cart');
     },
     async checkout() {
       if (this.processing) return;
@@ -282,11 +282,14 @@ export default {
 .remove-button {
   margin-left: auto;
   padding: 10px 15px;
-  background-color: #dc3545;
+  background-color: #f08080;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.remove-button:hover {
+  background-color: #dc143c;
 }
 .cart-summary {
   margin-top: 30px;
