@@ -51,6 +51,14 @@ const routes = [
       return import('../components/Cart.vue');
     },
     beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/orders',
+    name: 'orders',
+    component: function () {
+      return import('../components/Orders.vue');
+    },
+    beforeEnter: ifAuthenticated,
   }
 ]
 

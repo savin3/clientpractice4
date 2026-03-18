@@ -8,9 +8,7 @@
 
     <h2>Cart</h2>
 
-    <div v-if="loading" class="loading">Loading cart</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
-    <div v-else-if="cartItems.length === 0" class="empty-cart">
+    <div v-if="cartItems.length === 0" class="empty-cart">
       <p>Your cart is empty</p>
       <router-link to="/" class="continue-shopping">Continue shopping</router-link>
     </div>
@@ -64,8 +62,6 @@ export default {
   data() {
     return {
       cartItems: [],
-      loading: true,
-      error: '',
       processing: false
     };
   },
@@ -112,47 +108,32 @@ export default {
       event.target.style.display = 'none';
     },
     async loadCart() {
-      try {
-        const API = "http://lifestealer86.ru/api-shop";
-        const token = localStorage.getItem("myAppToken");
+      const API = "http://lifestealer86.ru/api-shop";
+      const token = localStorage.getItem("myAppToken");
 
-        const response = await fetch(`${API}/cart`, {
-          headers: { "Authorization": `Bearer ${token}` }
-        });
-        const result = await response.json();
+      const response = await fetch(`${API}/cart`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      const result = await response.json();
 
-        if (response.ok) {
-          this.cartItems = result.data || [];
-          this.loading = false;
-        } else {
-          this.error = 'Failed to load cart';
-          this.loading = false;
-        }
-      } catch (error) {
-        console.error('Failed to load cart:', error);
-        this.error = 'Failed to load cart';
-        this.loading = false;
+      if (response.ok) {
+        this.cartItems = result.data || [];
       }
     },
     async increaseQuantity(item) {
-      try {
-        const API = "http://lifestealer86.ru/api-shop";
-        const token = localStorage.getItem("myAppToken");
+      const API = "http://lifestealer86.ru/api-shop";
+      const token = localStorage.getItem("myAppToken");
 
-        const response = await fetch(`${API}/cart/${item.product_id}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          }
-        });
-
-        if (response.ok) {
-          await this.loadCart();
+      const response = await fetch(`${API}/cart/${item.product_id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         }
-      } catch (error) {
-        console.error('Failed to increase quantity:', error);
-        this.error = 'Failed to increase quantity';
+      });
+
+      if (response.ok) {
+        await this.loadCart();
       }
     },
     async decreaseQuantity(item) {
@@ -161,68 +142,50 @@ export default {
         return;
       }
 
-      try {
-        const API = "http://lifestealer86.ru/api-shop";
-        const token = localStorage.getItem("myAppToken");
+      const API = "http://lifestealer86.ru/api-shop";
+      const token = localStorage.getItem("myAppToken");
 
-        const response = await fetch(`${API}/cart/${item.cart_item_id}`, {
-          method: "DELETE",
-          headers: { "Authorization": `Bearer ${token}` }
-        });
+      const response = await fetch(`${API}/cart/${item.cart_item_id}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
 
-        if (response.ok) {
-          await this.loadCart();
-        }
-      } catch (error) {
-        console.error('Failed to decrease quantity:', error);
-        this.error = 'Failed to decrease quantity';
+      if (response.ok) {
+        await this.loadCart();
       }
     },
     async removeItem(item) {
-      try {
-        const API = "http://lifestealer86.ru/api-shop";
-        const token = localStorage.getItem("myAppToken");
+      const API = "http://lifestealer86.ru/api-shop";
+      const token = localStorage.getItem("myAppToken");
 
-        const response = await fetch(`${API}/cart/${item.cart_item_id}`, {
-          method: "DELETE",
-          headers: { "Authorization": `Bearer ${token}` }
-        });
+      const response = await fetch(`${API}/cart/${item.cart_item_id}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
 
-        if (response.ok) {
-          await this.loadCart();
-        }
-      } catch (error) {
-        console.error('Failed to remove item:', error);
-        this.error = 'Failed to remove item';
+      if (response.ok) {
+        await this.loadCart();
       }
     },
     async checkout() {
       if (this.processing) return;
 
       this.processing = true;
-      try {
-        const API = "http://lifestealer86.ru/api-shop";
-        const token = localStorage.getItem("myAppToken");
+      const API = "http://lifestealer86.ru/api-shop";
+      const token = localStorage.getItem("myAppToken");
 
-        const response = await fetch(`${API}/order`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          }
-        });
-
-        if (response.ok) {
-          this.$router.push("/");
-        } else {
-          this.error = 'Checkout failed';
+      const response = await fetch(`${API}/order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         }
-      } catch (error) {
-        console.error('Checkout error:', error);
-        this.error = 'Checkout failed';
-      } finally {
-        this.processing = false;
+      });
+
+      if (response.ok) {
+        this.$router.push("/orders");
       }
+      this.processing = false;
     },
     logout() {
       this.$store.dispatch('LOGOUT_REQUEST')

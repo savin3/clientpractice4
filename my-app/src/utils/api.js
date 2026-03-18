@@ -145,3 +145,24 @@ export const removeFromCartRequest = (cartItemId) => {
             .catch((error) => reject(error));
     });
 };
+
+export const getOrdersRequest = () => {
+    return new Promise((resolve, reject) => {
+        fetch(`${API}/order`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${localStorage.getItem('myAppToken')}`
+            }
+        })
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    reject(data);
+                    return;
+                }
+                resolve(data.data);
+            })
+            .catch((error) => reject(error));
+    });
+};

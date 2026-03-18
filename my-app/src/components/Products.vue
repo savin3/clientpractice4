@@ -15,8 +15,7 @@
 
     <h2>Product catalog</h2>
 
-    <div v-if="loading" class="loading">Loading...</div>
-    <div v-else class="products-grid">
+    <div class="products-grid">
       <div v-for="product in products" :key="product.id" class="product-card">
         <img
             v-if="product.image"
@@ -43,7 +42,6 @@ export default {
   data() {
     return {
       products: [],
-      loading: true
     };
   },
   computed: {
@@ -59,10 +57,6 @@ export default {
       productsRequest()
           .then(products => {
             this.products = products;
-            this.loading = false;
-          })
-          .catch(() => {
-            this.loading = false;
           });
     },
     onImageError(event) {
@@ -70,12 +64,8 @@ export default {
     },
     addToCart(productId) {
       addToCartRequest(productId)
-        .then(() => {
-          alert('Product added to cart');
-        })
-          .catch(() => {
-            alert('Error when adding');
-          });
+        .then(() => {})
+          .catch(() => {});
     },
     logout() {
       this.$store.dispatch('LOGOUT_REQUEST')
