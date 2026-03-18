@@ -215,18 +215,6 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
 }
-.nav {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 5px;
-}
-.nav a {
-  text-decoration: none;
-  color: #007bff;
-}
 .nav-button {
   margin-left: auto;
   background: none;
@@ -238,6 +226,7 @@ export default {
   margin-top: 30px;
 }
 .cart-item {
+  background-color: #fff;
   display: flex;
   gap: 20px;
   padding: 20px;
@@ -245,6 +234,8 @@ export default {
   border-radius: 10px;
   margin-bottom: 15px;
   align-items: center;
+  border: 1px dashed #000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .cart-item-image {
   width: 100px;
@@ -300,7 +291,7 @@ export default {
 .cart-summary {
   margin-top: 30px;
   padding: 20px;
-  border-top: 2px solid #ddd;
+  border-top: 3px dashed #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;

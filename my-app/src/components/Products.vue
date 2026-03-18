@@ -91,23 +91,6 @@ h2 {
   max-width: 1200px;
   margin: 0 auto;
 }
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  display: flex;
-  gap: 20px;
-  padding: 10px 20px;
-  background-color: #f8f9fa;
-  border-radius: 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.nav a {
-  text-decoration: none;
-  color: #007bff;
-}
 .nav-button {
   margin-left: auto;
   background: none;
@@ -122,6 +105,7 @@ h2 {
   align-items: stretch;
 }
 .product-card {
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
@@ -129,6 +113,8 @@ h2 {
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px dashed #000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .product-card:hover {
   transform: translateY(-5px);

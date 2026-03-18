@@ -79,51 +79,59 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
 }
-.nav {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 5px;
-}
-.nav a {
-  text-decoration: none;
-  color: #007bff;
-}
 .nav-button {
   margin-left: auto;
   background: none;
   border: none;
-  color: #dc3545;
+  color: #2c3e50;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+}
+.nav-button:hover {
+  opacity: 0.8;
 }
 .orders-list {
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .order-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s;
+}
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 .order-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
 }
 .order-id {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-.order-price {
   font-size: 20px;
   font-weight: bold;
+  color: #333;
+  background: #f8f9fa;
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+.order-price {
+  font-size: 24px;
+  font-weight: bold;
   color: #28a745;
+  background: #e8f5e9;
+  padding: 5px 20px;
+  border-radius: 25px;
 }
 .order-products {
   display: flex;
@@ -131,25 +139,43 @@ export default {
   gap: 10px;
 }
 .order-product {
-  padding: 5px 10px;
-  background-color: #f8f9fa;
-  border-radius: 5px;
+  padding: 8px 15px;
+  background-color: #f0f7ff;
+  border-radius: 20px;
   font-size: 14px;
+  color: #2c3e50;
+  border: 1px solid #d4e4f5;
 }
 .empty-orders {
   text-align: center;
-  padding: 50px;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+.empty-orders p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
 }
 .continue-shopping {
   display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 12px 30px;
+  background-color: #98d4d1;
+  color: #2c3e50;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: background-color 0.3s;
 }
 .continue-shopping:hover {
-  background-color: #0056b3;
+  background-color: #7ac0bd;
+}
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+  text-align: left;
 }
 </style>
