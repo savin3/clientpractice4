@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { productsRequest } from '@/utils/api.js';
+import { productsRequest, addToCartRequest } from '@/utils/api.js';
 
 export default {
   data() {
@@ -69,7 +69,13 @@ export default {
       event.target.style.display = 'none';
     },
     addToCart(productId) {
-
+      addToCartRequest(productId)
+        .then(() => {
+          alert('Product added to cart');
+        })
+          .catch(() => {
+            alert('Error when adding');
+          });
     },
     logout() {
       this.$store.dispatch('LOGOUT_REQUEST')
