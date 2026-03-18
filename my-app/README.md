@@ -19,3 +19,13 @@ cd my-app
 ```
 npm install
 ```
+
+Сборка для продакшена
+```
+npm run build
+```
+
+Запуск сервера
+```
+npm run serve
+```
