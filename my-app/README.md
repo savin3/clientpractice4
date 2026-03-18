@@ -1,19 +1,19 @@
 # my-app
 
-## Project setup
+## Установка и запуск
+```bash
+
+### Клонировать репозиторий
+```
+git clone https://github.com/savin3/clientpractice4.git
+```
+
+### Перейти в папку проекта
+```
+cd my-app
+```
+
+### Установить зависимости
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
