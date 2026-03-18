@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { getCartRequest, removeFromCartRequest, addToCartRequest } from '@/utils/api.js';
+import { toast } from 'vue3-toastify';
 
 export default {
   data() {
@@ -134,6 +134,9 @@ export default {
 
       if (response.ok) {
         await this.loadCart();
+        toast.success('Quantity increased');
+      } else {
+        toast.error('Failed to increase quantity');
       }
     },
     async decreaseQuantity(item) {
@@ -152,6 +155,9 @@ export default {
 
       if (response.ok) {
         await this.loadCart();
+        toast.success('Quantity decreased');
+      } else {
+        toast.error('Failed to decrease quantity');
       }
     },
     async removeItem(item) {
@@ -165,6 +171,9 @@ export default {
 
       if (response.ok) {
         await this.loadCart();
+        toast.success('Item removed from cart');
+      } else {
+        toast.error('Failed to decrease quantity');
       }
     },
     async checkout() {
@@ -183,7 +192,10 @@ export default {
       });
 
       if (response.ok) {
+        toast.success('Order placed successfully!');
         this.$router.push("/orders");
+      } else {
+        toast.error('Checkout failed');
       }
       this.processing = false;
     },

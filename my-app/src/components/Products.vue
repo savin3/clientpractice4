@@ -37,6 +37,7 @@
 
 <script>
 import { productsRequest, addToCartRequest } from '@/utils/api.js';
+import { toast } from 'vue3-toastify';
 
 export default {
   data() {
@@ -64,8 +65,12 @@ export default {
     },
     addToCart(productId) {
       addToCartRequest(productId)
-        .then(() => {})
-          .catch(() => {});
+          .then(() => {
+            toast.success('Product added to cart');
+          })
+          .catch(() => {
+            toast.error('Failed to add product');
+          });
     },
     logout() {
       this.$store.dispatch('LOGOUT_REQUEST')

@@ -30,6 +30,7 @@
 
 <script>
 import { getOrdersRequest } from '@/utils/api.js';
+import { toast } from 'vue3-toastify';
 
 export default {
   data() {
@@ -54,6 +55,12 @@ export default {
       getOrdersRequest()
           .then(orders => {
             this.orders = orders;
+            if (orders.length === 0) {
+              toast.info('No orders found');
+            }
+          })
+          .catch(() => {
+            toast.error('Failed to load orders');
           });
     },
     logout() {
