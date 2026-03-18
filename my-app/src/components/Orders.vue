@@ -86,7 +86,6 @@ export default {
   color: #2c3e50;
   cursor: pointer;
   font-weight: 500;
-  font-size: 16px;
 }
 .nav-button:hover {
   opacity: 0.8;
@@ -124,6 +123,13 @@ export default {
   background: #f8f9fa;
   padding: 5px 15px;
   border-radius: 20px;
+}
+.nav-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
 }
 .order-price {
   font-size: 24px;
